@@ -27,7 +27,7 @@ $products = [
         'name' => 'Ботинки для сноуборда DC Mutiny Charocal',
         'category' => 'Ботинки',
         'price' => '10999',
-        'image' => '	img/lot-4.jpg'
+        'image' => 'img/lot-4.jpg'
     ],
     [
         'name' => 'Куртка для сноуборда DC Mutiny Charocal',
@@ -43,15 +43,12 @@ $products = [
     ]
 ];
 function print_price($price){
+    $price = ceil($price);
     if ($price >= 1000) {
-        $format_price = number_format($price, '0', '', ' ');
-        $format_price .= " ₽";
-        return $format_price;
-    } else {
-      $price = ceil($price);
-      $price .= " ₽";
-      return $price;
+        $price = number_format($price, '0', '', ' ');
     }
+    $price .= " ₽";
+    return $price;
 }
 ?>
 <!DOCTYPE html>
