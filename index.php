@@ -9,39 +9,47 @@ $products = [
         'name' => '014 Rossignol District Snowboard',
         'category' => '	Доски и лыжи',
         'price' => '10999',
-        'URL' => 'img/lot-1.jpg'
+        'image' => 'img/lot-1.jpg'
     ],
     [
         'name' => 'DC Ply Mens 2016/2017 Snowboard',
         'category' => '	Доски и лыжи',
         'price' => '159999',
-        'URL' => 'img/lot-2.jpg'
+        'image' => 'img/lot-2.jpg'
     ],
     [
         'name' => 'Крепления Union Contact Pro 2015 года размер L/XL',
         'category' => 'Крепления',
         'price' => '8000',
-        'URL' => 'img/lot-3.jpg'
+        'image' => 'img/lot-3.jpg'
     ],
     [
         'name' => 'Ботинки для сноуборда DC Mutiny Charocal',
         'category' => 'Ботинки',
         'price' => '10999',
-        'URL' => '	img/lot-4.jpg'
+        'image' => 'img/lot-4.jpg'
     ],
     [
         'name' => 'Куртка для сноуборда DC Mutiny Charocal',
         'category' => 'Одежда',
         'price' => '7500',
-        'URL' => '	img/lot-5.jpg'
+        'image' => '	img/lot-5.jpg'
     ],
     [
         'name' => 'Маска Oakley Canopy',
         'category' => 'Разное',
         'price' => '5400',
-        'URL' => '	img/lot-6.jpg'
+        'image' => '	img/lot-6.jpg'
     ]
 ];
+function print_price($price){
+    $price = ceil($price);
+    if ($price >= 1000) {
+        $price = number_format($price, '0', '', ' ');
+    }
+    $price .= " ₽";
+    return $price;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -95,7 +103,7 @@ $products = [
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <!--заполните этот список из массива категорий-->
-            <?php foreach ($categories as $key => $category): ?>
+            <?php foreach ($categories as $category): ?>
             <li class="promo__item promo__item--boards">
                 <a class="promo__link" href="pages/all-lots.html"><?=$category; ?></a>
             </li>
@@ -111,7 +119,7 @@ $products = [
             <?php foreach ($products as $key => $product):?>
             <li class="lots__item lot">
                 <div class="lot__image">
-                    <img src="<?=$product['URL']; ?>" width="350" height="260" alt="">
+                    <img src="<?=$product['image']; ?>" width="350" height="260" alt="<?=$product['name']; ?>">
                 </div>
                 <div class="lot__info">
                     <span class="lot__category"><?=$product['category']; ?></span>
@@ -119,7 +127,9 @@ $products = [
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=$product['price']; ?><b class="rub">р</b></span>
+                            <span class="lot__cost">
+                                 <?=print_price($product['price']); ?>
+                            </span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
