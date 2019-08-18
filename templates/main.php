@@ -31,8 +31,9 @@
                                  <?=print_price(esc($product['price'])); ?>
                             </span>
                                 </div>
-                                <div class="lot__timer timer">
-                                    12:23
+                                <div class="lot__timer timer
+                                    <?=take_hours($product['date']) < 60 ? ' timer——finishing' : ''?> ">
+                                    <?=end_time($product['date']); ?>
                                 </div>
                             </div>
                         </div>
