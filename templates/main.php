@@ -28,12 +28,12 @@
                                 <div class="lot__rate">
                                     <span class="lot__amount">Стартовая цена</span>
                                     <span class="lot__cost">
-                                 <?=print_price(esc($product['price'])); ?>
+                                 <?=price(esc($product['price'])); ?>
                             </span>
                                 </div>
                                 <div class="lot__timer timer
-                                    <?=take_hours($product['date']) < 60 ? ' timer——finishing' : ''?> ">
-                                    <?=end_time($product['date']); ?>
+                                    <?=take_seconds($product['date']) < 60 ? ' timer——finishing' : ''?> ">
+                                    <?=formate_seconds(take_seconds($product['date'])); ?>
                                 </div>
                             </div>
                         </div>
