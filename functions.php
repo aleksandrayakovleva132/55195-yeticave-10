@@ -36,7 +36,6 @@ function take_seconds($date) {
     $seconds = $dt_diff;
     return $seconds;
 };
-
 function formate_seconds($seconds) {
     $sec_in_hour = 3600;
     $hours_until_end = floor($seconds / $sec_in_hour);
@@ -48,3 +47,4 @@ function formate_seconds($seconds) {
     $result = $hours .':' . $minutes;
     return $result;
 }
+

@@ -32,8 +32,9 @@
                             </span>
                                 </div>
                                 <div class="lot__timer timer
-                                    <?=take_seconds($product['date']) < 60 ? ' timer——finishing' : ''?> ">
-                                    <?=formate_seconds(take_seconds($product['date'])); ?>
+                                    <?=$seconds=take_seconds($product['date']);
+                                       $seconds < 3600 ? 'timer——finishing' : ''?> ">
+                                    <?=formate_seconds($seconds); ?>
                                 </div>
                             </div>
                         </div>
