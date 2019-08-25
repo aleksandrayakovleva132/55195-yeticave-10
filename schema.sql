@@ -7,7 +7,7 @@ USE yeticave;
 CREATE TABLE category (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name CHAR(128),
-  code CHAR(64)
+  code CHAR(128)
 );
 
 CREATE TABLE lot (
@@ -37,10 +37,8 @@ CREATE TABLE user (
   date_registration DATE,
   email CHAR(128) NOT NULL UNIQUE,
   name CHAR(30),
-  password CHAR(64),
+  password CHAR(128),
   avatar CHAR,
-  contacts CHAR(300),
-  lot_id INT,
-  rate_id INT
+  contacts CHAR(300)
 );
 
