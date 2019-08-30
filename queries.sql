@@ -41,3 +41,6 @@ UPDATE lot SET name = 'new name' WHERE id = '2';
 
 --получить список ставок для лота по его идентификатору с сортировкой по дате.
 SELECT step_rate FROM lot ORDER BY date_create;
+
+
+
