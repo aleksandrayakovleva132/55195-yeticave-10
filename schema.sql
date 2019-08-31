@@ -21,7 +21,8 @@ CREATE TABLE lot (
   step_rate INT,
   author_id INT,
   winner INT,
-  category_id INT
+  category_id INT,
+  current_price INT
 );
 
 CREATE TABLE rate (
