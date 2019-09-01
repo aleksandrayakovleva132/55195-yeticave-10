@@ -13,7 +13,7 @@ CREATE TABLE category (
 CREATE TABLE lot (
   id INT AUTO_INCREMENT PRIMARY KEY,
   date_create DATETIME,
-  name CHAR(40) NOT NULL UNIQUE,
+  name CHAR(255) NOT NULL UNIQUE,
   description TEXT,
   image CHAR,
   start_price INT,
@@ -21,8 +21,7 @@ CREATE TABLE lot (
   step_rate INT,
   author_id INT,
   winner INT,
-  category_id INT,
-  current_price INT
+  category_id INT
 );
 
 CREATE TABLE rate (
@@ -33,13 +32,14 @@ CREATE TABLE rate (
   lot_id INT
  );
 
-CREATE TABLE user (
+
+CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   date_registration DATE,
   email CHAR(128) NOT NULL UNIQUE,
-  name CHAR(30),
+  name CHAR(128),
   password CHAR(255),
-  avatar CHAR,
+  avatar CHAR(255),
   contacts CHAR(300)
 );
 
