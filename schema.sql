@@ -19,11 +19,9 @@ CREATE TABLE lot (
   start_price INT,
   last_date DATE,
   step_rate INT,
-  author_id INT,
-  winner CHAR,
-  category_id ISELECT  l.name, l.start_price, l.image,  c.name,  IFNULL(MAX(r.amount), l.start_price) current_price  FROM lot l
-JOIN category c ON l.category_id = c.name  LEFT JOIN rate r ON  l.id = r.lot_id
-WHERE l.last_date > NOW() GROUP BY r.lot_id, l.name, l.start_price, l.image ,c.name, l.category_id, l.id ORDER BY l.date_create DESC LIMIT 3;NT
+  user_author_id INT NOT NULL,
+  user_winner_id INT NULL,
+  category_id INT
 );
 
 CREATE TABLE rate (
