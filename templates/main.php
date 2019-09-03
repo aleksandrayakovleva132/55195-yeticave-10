@@ -3,9 +3,9 @@
             <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
             <ul class="promo__list">
                 <!--заполните этот список из массива категорий-->
-                <?php foreach ($categories as $category): ?>
-                    <li class="promo__item promo__item--boards">
-                        <a class="promo__link" href="pages/all-lots.html"><?=esc($category); ?></a>
+                <?php foreach ($categories as $key => $category): ?>
+                    <li class="promo__item promo__item--<?=$category['code'] ?>">
+                        <a class="promo__link" href="pages/all-lots.html"><?=esc($category['name']); ?></a>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -21,18 +21,18 @@
                         <div class="lot__image">
                             <img src="<?=esc($product['image']); ?>" width="350" height="260" alt="<?=esc($product['name']); ?>">
                         </div>
-                        <div class="lot__info">
-                            <span class="lot__category"><?=esc($product['category']); ?></span>
+                         <div class="lot__info">
+                            <span class="lot__category"><?=esc($product['category_id']); ?></span>
                             <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=esc($product['name']); ?></a></h3>
                             <div class="lot__state">
                                 <div class="lot__rate">
                                     <span class="lot__amount">Стартовая цена</span>
                                     <span class="lot__cost">
-                                 <?=price(esc($product['price'])); ?>
+                                 <?=price(esc($product['start_price'])); ?>
                             </span>
                                 </div>
                                 <div class="lot__timer timer
-                                    <?=$seconds=take_seconds($product['date']);
+                                    <?=$seconds=take_seconds($product['last_date']);
                                        $seconds < 3600 ? 'timer——finishing' : ''?> ">
                                     <?=formate_seconds($seconds); ?>
                                 </div>
