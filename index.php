@@ -11,25 +11,35 @@ if(!$link) {
    $content = include_template('error.php', ['error' => $error]);
 } 
 else {
-    $sql = 'SELECT `name`, `code` FROM category';    
-
+    $sql = 'SELECT name, code FROM category';    
     $result = mysqli_query($link, $sql);
+    
     if($result) {
         $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    } 
-    $sql = 'SELECT  `name`, `image`, `category_id`, `start_price`, `last_date` FROM lot 
-    WHERE `date_create`< NOW()  ORDER BY `date_create` LIMIT 6' ;
+        $page_content = include_template('main.php', ['categories' => $categories]);
+    } else {
+        $error = mysqli_error($link);
+        $page_content  = include_template('error.php', ['error' => $error]);
+    }
+
+    $sql = 'SELECT  l.image, l.category_id, l.start_price,
+    l.last_date, l.name, c.name as category_name FROM lot l INNER JOIN category c ON l.category_id = c.id
+    WHERE l.last_date > NOW()  ORDER BY l.date_create DESC LIMIT 9';
 
     $result = mysqli_query($link, $sql);
 
     if($result) {
         $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    } 
-}
-  
+        $page_content = include_template('main.php', ['product' => $products]);
+    } else {
+        $error = mysqli_error($link);
+        $page_content  = include_template('error.php', ['error' => $error]);
+    }
+}  
 
 $page_content = include_template('main.php', ['categories' => $categories, 'products' => $products]);
 // $page_content = include_template('main.php', ['products' => $products]);
+
 
 $layout_content = include_template('layout.php', [
         'content' => $page_content,
