@@ -48,3 +48,17 @@ function formate_seconds($seconds) {
     return $result;
 }
 
+function show_error($typeError) {
+    $link = mysqli_connect('127.0.0.1', 'root', '', 'yeticave');
+    mysqli_set_charset($link, "utf8");
+
+    $error = $typeError;
+    $page_content = include_template('error.php', ['error' => $error]);
+    $layout_content = include_template('layout.php', [
+        'content' => $page_content,
+        'categories' => $categories,
+        'title' => 'YetiCave'
+    ]);
+    print($layout_content);
+    die();
+}
