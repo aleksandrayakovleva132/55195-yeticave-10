@@ -7,45 +7,38 @@ $link = mysqli_connect('127.0.0.1', 'root', '', 'yeticave');
 mysqli_set_charset($link, "utf8");
 
 if(!$link) {
-   $error = mysqli_connect_error();
-   $content = include_template('error.php', ['error' => $error]);
+    show_error(mysqli_connect_error());
 } 
-else {
-    $sql = 'SELECT name, code FROM category';    
-    $result = mysqli_query($link, $sql);
-    
-    if($result) {
-        $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        $page_content = include_template('main.php', ['categories' => $categories]);
-    } else {
-        $error = mysqli_error($link);
-        $page_content  = include_template('error.php', ['error' => $error]);
-    }
+$sql = 'SELECT name, code FROM category';
+$result = mysqli_query($link, $sql);
 
-    $sql = 'SELECT  l.image, l.category_id, l.start_price,
-    l.last_date, l.name, c.name as category_name FROM lot l INNER JOIN category c ON l.category_id = c.id
-    WHERE l.last_date > NOW()  ORDER BY l.date_create DESC LIMIT 9';
+if(!$result) {
+    show_error(mysqli_error($link));
+}
+$categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-    $result = mysqli_query($link, $sql);
+$sql = 'SELECT l.image, l.category_id, l.start_price,
+        l.last_date, l.name, c.name as category_name FROM lot l INNER JOIN category c ON l.category_id = c.id
+        WHERE l.last_date > NOW() ORDER BY l.date_create DESC LIMIT 9';
+        $result = mysqli_query($link, $sql);
 
-    if($result) {
-        $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        $page_content = include_template('main.php', ['product' => $products]);
-    } else {
-        $error = mysqli_error($link);
-        $page_content  = include_template('error.php', ['error' => $error]);
-    }
-}  
+if(!$result) {
+    show_error(mysqli_error($link));
+}
+$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-$page_content = include_template('main.php', ['categories' => $categories, 'products' => $products]);
-// $page_content = include_template('main.php', ['products' => $products]);
-
-
+$page_content = include_template('main.php', ['categories' => $categories, 'products' => $products ]);       
 $layout_content = include_template('layout.php', [
-        'content' => $page_content,
-        'categories' => $categories,
-        'title' => 'YetiCave'
+    'content' => $page_content,
+    'categories' => $categories,
+    'title' => 'YetiCave'
 ]);
 print($layout_content);
 
-?>
+
+
+   
+
+
+
+

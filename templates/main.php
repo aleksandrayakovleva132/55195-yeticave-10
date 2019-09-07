@@ -1,9 +1,5 @@
          <section class="promo">
-         <!-- <?php 
-         echo '<pre>';
-           print_r($products);
-         echo '</pre>';
-         ?> -->
+         
             <h2 class="promo__title">Нужен стафф для катки?</h2>
             <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
             <ul class="promo__list">
@@ -22,7 +18,6 @@
             <ul class="lots__list">
                 <!--заполните этот список из массива с товарами-->
                 <?php foreach ($products as $product):?>
-
                     <li class="lots__item lot">
                         <div class="lot__image">
                             <img src="<?=esc($product['image']); ?>" width="350" height="260" alt="<?=esc($product['name']); ?>">
