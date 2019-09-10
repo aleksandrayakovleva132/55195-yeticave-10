@@ -38,7 +38,7 @@ SELECT l.id, c.name FROM lot l JOIN category c ON c.id = l.category_id WHERE l.i
 UPDATE lot SET name = 'new name' WHERE id = 2;
 
 --получить список ставок для лота по его идентификатору с сортировкой по дате.
-SELECT l.step_rate FROM lot l JOIN rate r ON l.id = r.lot_id  WHERE r.id > 3 ORDER BY r.date_create;
+SELECT l.step_rate FROM lot l JOIN rate r ON l.id = r.lot_id WHERE l.id > 3 ORDER BY r.date_create;
 
 
 --связать лот с таблицей ставок

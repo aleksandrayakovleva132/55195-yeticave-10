@@ -5,41 +5,40 @@ CREATE DATABASE yeticave
 USE yeticave;
 
 CREATE TABLE category (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name CHAR(128) NOT NULL UNIQUE,
-  code CHAR(128)
+  id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,  
+  name CHAR(128) NOT NULL UNIQUE, 
+  code CHAR(128) NOT NULL
 );
 
 CREATE TABLE lot (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  date_create DATETIME,
+  id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  date_create DATETIME NOT NULL,
   name CHAR(255) NOT NULL UNIQUE,
-  description TEXT,
-  image CHAR,
-  start_price INT,
-  last_date DATE,
-  step_rate INT,
+  description TEXT NULL,
+  image CHAR NOT NULL,
+  start_price INT NOT NULL,
+  last_date DATE NOT NULL,
+  step_rate INT NOT NULL,
   user_author_id INT NOT NULL,
   user_winner_id INT NULL,
-  category_id INT
+  category_id INT NOT NULL
 );
 
 CREATE TABLE rate (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  amount INT,
-  user_id INT,
-  lot_id INT
+  id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  amount INT NOT NULL,
+  user_id INT NOT NULL,
+  lot_id INT NOT NULL
  );
 
-
 CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  date_registration DATE,
+  id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  date_registration DATE NOT NULL,
   email CHAR(128) NOT NULL UNIQUE,
-  name CHAR(128),
-  password CHAR(255),
-  avatar CHAR(255),
-  contacts CHAR(300)
+  name CHAR(128) NOT NULL,
+  password CHAR(255) NOT NULL,
+  avatar CHAR(255) NULL,
+  contacts CHAR(300) NOT NULL
 );
 
