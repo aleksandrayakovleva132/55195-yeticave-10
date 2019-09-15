@@ -8,18 +8,24 @@ $result = mysqli_query($link, $sql);
 
 $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-$id = mysqli_real_escape_string($link, $_GET['id']);
+if(isset($_GET['id'])) {
+        $id = mysqli_real_escape_string($link, $_GET['id']);
+        $sql = "SELECT l.id, l.name, l.image, l.description, l.last_date, l.start_price, l.step_rate, c.name as category_name FROM
+        lot l INNER JOIN category c ON l.category_id = c.id
+        WHERE l.id = '$id'"; 
 
-$sql = "SELECT l.id, l.name, l.image, l.description, l.last_date, l.start_price, l.step_rate, c.name as category_name FROM
- lot l INNER JOIN category c ON l.category_id = c.id
- WHERE l.id = '$id'"; 
+        $result = mysqli_query($link, $sql); 
 
-$result = mysqli_query($link, $sql); 
-
-if($result=mysqli_fetch_assoc($result)){
-    $product = $result;
-    $page_content = include_template('product.php', ['categories' => $categories, 'product' => $product]);
-    } else {
+        if($result=mysqli_fetch_assoc($result)){
+            $product = $result;
+            $page_content = include_template('product.php', ['categories' => $categories, 'product' => $product]);
+            } else {
+                http_response_code(404);
+                $page_content = include_template('404.php', ['categories' => $categories]);
+        }
+    }
+    else {
+        http_response_code(404);
         $page_content = include_template('404.php', ['categories' => $categories]);
 }
 

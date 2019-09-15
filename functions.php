@@ -62,4 +62,3 @@ function show_error($typeError) {
     print($layout_content);
     die();
 }
-
