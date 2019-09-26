@@ -15,7 +15,11 @@
           <div class="lot-item__image">
             <img src="../<?=esc($product['image']); ?>" width="730" height="548" alt="<?=esc($product['name']); ?>">
           </div>
-          <p class="lot-item__category">Категория: <span><?=esc($product['category_name']); ?></span></p>
+          <p class="lot-item__category">Категория: <span> 
+          <?=esc($product['category_name']); ?>
+          </span></p>
+          </span></p>
+          </span></p>
           <p class="lot-item__description"><?=esc($product['description']); ?></p>
         </div>
 
@@ -29,10 +33,27 @@
             <div class="lot-item__cost-state">
               <div class="lot-item__rate">
                 <span class="lot-item__amount">Текущая цена</span>
-                <span class="lot-item__cost"><?=esc($product['start_price']); ?></span>
+                <span class="lot-item__cost">
+                <?php
+                    if(!isset($product['lot_amount'])) {
+                      print_r($product['start_price']);
+                    } else {
+                     print_r($product['lot_amount']);
+                    }
+                ?>
+                </span>
               </div>
               <div class="lot-item__min-cost">
-                Мин. ставка <span><?=esc($product['step_rate']); ?></span>
+                Мин. ставка <span>
+                <?php
+                    if(!isset($product['lot_amount'])) {
+                      print_r($product['start_price'] + $product['step_rate']);
+                    } else {
+                     print_r($product['lot_amount'] + $product['step_rate'] );
+                    }
+                ?>
+               
+                </span>
               </div>
             </div>
             <!-- <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">
